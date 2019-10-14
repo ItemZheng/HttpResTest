@@ -33,7 +33,8 @@ f.write("Product Page: %s" % origin_page)
 f.write("\n\n\n")
 
 # 每次爬取10条，共10000 条
-for page in tqdm(range(0, 1000)):
+comment_count = 0
+for page in tqdm(range(0, 1200)):
     # 当前爬取第 page 页
     query_args["page"] = str(page)
 
@@ -50,13 +51,17 @@ for page in tqdm(range(0, 1000)):
     content = content[begin + 1:end]
 
     # json处理
-    data = json.loads(content)
+    try:
+        data = json.loads(content)
+    except:
+        continue
 
     # 获取comments
     comments = data["comments"]
     for i in range(len(comments)):  # 循环遍历所有comments
         comment = comments[i]  # 单条comment
-        f.write("### Comment %s ###\n" % (str(10 * page + i)))
+        f.write("### Comment %s ###\n" % (str(comment_count)))
+        comment_count = comment_count + 1
         f.write(comment['content'])
         f.write('\n\n\n')
 
