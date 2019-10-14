@@ -33,7 +33,7 @@ f.write("Product Page: %s" % origin_page)
 f.write("\n\n\n")
 
 # 每次爬取10条，共10000 条
-for page in tqdm(range(0, 2)):
+for page in tqdm(range(0, 1000)):
     # 当前爬取第 page 页
     query_args["page"] = str(page)
 
