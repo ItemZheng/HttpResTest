@@ -33,8 +33,9 @@ f.write("Product Page: %s" % origin_page)
 f.write("\n\n\n")
 
 # 每次爬取10条，共10000 条
+# 该商品只有1000条有效评论
 comment_count = 0
-for page in tqdm(range(0, 1200)):
+for page in tqdm(range(0, 100)):
     # 当前爬取第 page 页
     query_args["page"] = str(page)
 
@@ -61,6 +62,15 @@ for page in tqdm(range(0, 1200)):
         comment_count = comment_count + 1
         f.write(comment['content'])
         f.write('\n\n\n')
+
+        # 爬取追评
+        if "afterUserComment" in comment.keys():
+            afterUserComment = comment["afterUserComment"]
+            if "content" in afterUserComment.keys():
+                f.write("### Comment %s ###\n" % (str(comment_count)))
+                comment_count = comment_count + 1
+                f.write(afterUserComment["content"])
+                f.write('\n\n\n')
 
     # 防止 ip 被封，睡眠一秒模拟用户点击
     time.sleep(1)
