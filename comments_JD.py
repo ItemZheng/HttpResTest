@@ -34,7 +34,7 @@ f.write("\n\n\n")
 
 # 每次爬取10条，共10000 条
 comment_count = 0
-for page in tqdm(range(0, 1200)):
+for page in tqdm(range(15, 16)):
     # 当前爬取第 page 页
     query_args["page"] = str(page)
 
@@ -51,10 +51,7 @@ for page in tqdm(range(0, 1200)):
     content = content[begin + 1:end]
 
     # json处理
-    try:
-        data = json.loads(content)
-    except:
-        continue
+    data = json.loads(content)
 
     # 获取comments
     comments = data["comments"]

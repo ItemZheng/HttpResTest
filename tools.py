@@ -87,11 +87,13 @@ def get_encode(header, body):
     except:
         pass
     try:
-        if 'Content-Type' in header:
-            Content_Type = header['Content-Type']
-            m = re.search(r'.*?charset=(.*?)(;|$)', Content_Type, flags=re.I)
-            if m:
-                return m.group(1)
+        header_item = header.split('\r\n')
+        for item in header_item:
+            if 'Content-Type' in item:
+                Content_Type = item
+                m = re.search(r'charset=(.*?)(;|$)', Content_Type, flags=re.I)
+                if m:
+                    return m.group(1)
     except:
         pass
     chardit1 = chardet.detect(body)
