@@ -6,7 +6,7 @@ import codecs
 from tqdm import *
 
 # 天猫
-
+# todo 只能爬取十几个页面就会被封IP
 # 原网页
 origin_page = "https://detail.tmall.com/item.htm?spm=a230r.1.14.1.28ff5197xnL9Q6&id=533732788971&cm_id=140105335569ed55e27b&abbucket=18"
 
