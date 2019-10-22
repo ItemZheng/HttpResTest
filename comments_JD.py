@@ -58,19 +58,21 @@ for page in tqdm(range(0, 100)):
     comments = data["comments"]
     for i in range(len(comments)):  # 循环遍历所有comments
         comment = comments[i]  # 单条comment
-        f.write("### Comment %s ###\n" % (str(comment_count)))
+        # f.write("### Comment %s ###\n" % (str(comment_count)))
         comment_count = comment_count + 1
         f.write(comment['content'])
-        f.write('\n\n\n')
+        f.write('\n')
 
         # 爬取追评
         if "afterUserComment" in comment.keys():
             afterUserComment = comment["afterUserComment"]
             if "content" in afterUserComment.keys():
-                f.write("### Comment %s ###\n" % (str(comment_count)))
+                # f.write("### Comment %s ###\n" % (str(comment_count)))
                 comment_count = comment_count + 1
                 f.write(afterUserComment["content"])
-                f.write('\n\n\n')
+                f.write('\n')
 
     # 防止 ip 被封，睡眠一秒模拟用户点击
     time.sleep(1)
+
+f.write('\n\nTotal %s comments\n' % str(comment_count))

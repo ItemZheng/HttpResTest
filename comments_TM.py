@@ -67,17 +67,19 @@ for page in tqdm(range(0, 84)):
     for i in range(len(comments)):  # 循环遍历所有comments
         comment = comments[i]  # 单条comment
         if comment['rateContent'] != u"此用户没有填写评论!":
-            f.write("### Comment %s ###\n" % (str(comment_count)))
+            # f.write("### Comment %s ###\n" % (str(comment_count)))
             comment_count = comment_count + 1
             f.write(comment['rateContent'])
-            f.write('\n\n\n')
+            f.write('\n')
 
         appendComment = comment["appendComment"]
         if appendComment is not None:
-            f.write("### Comment %s ###\n" % (str(comment_count)))
+            # f.write("### Comment %s ###\n" % (str(comment_count)))
             comment_count = comment_count + 1
             f.write(appendComment['content'])
-            f.write('\n\n\n')
+            f.write('\n')
 
     # 防止 ip 被封，睡眠一秒模拟用户点击
     time.sleep(3)
+
+f.write('\n\nTotal %s comments\n' % str(comment_count))

@@ -8,13 +8,14 @@ import re
 import gzip
 
 
-def plugin_homepage(ip, timeout, query_args, request_headers):
+def plugin_homepage(ip, timeout, query_args, request_headers, request_body=None):
     url = "%s?" % ip
-    for k in query_args:
-        url = url + str(k) + '=' + str(query_args[k]) + '&'
+    if query_args is not None:
+        for k in query_args:
+            url = url + str(k) + '=' + str(query_args[k]) + '&'
     url = url[0: -1]
 
-    is_timeout, error_reason, code, header, body, title = get_html(url, timeout, request_headers)
+    is_timeout, error_reason, code, header, body, title = get_html(url, timeout, request_headers, request_body)
     res = {"ip": ip,
            "rsp_header": header,
            "rsp_body": body,
@@ -25,7 +26,7 @@ def plugin_homepage(ip, timeout, query_args, request_headers):
     return res
 
 
-def get_html(url, timeout, request_headers):
+def get_html(url, timeout, request_headers, request_body):
     headers = request_headers
     is_timeout = False
     error_reason = None
@@ -35,6 +36,8 @@ def get_html(url, timeout, request_headers):
     title = None
     try:
         request = urllib2.Request(url, headers=headers)
+        if request_body is not None:
+            request = urllib2.Request(url, headers=headers, data=request_body)
         response = urllib2.urlopen(request, timeout=timeout)
         code = response.getcode()
         body = response.read()
