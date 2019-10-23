@@ -15,19 +15,7 @@ ip = "https://rate.tmall.com/list_detail_rate.htm"
 query_args = {
     "itemId": "533732788971",
     "sellerId": "697095006",
-    "currentPage": "1",
-    # "spuId": "901541286",
-    # "order": "3",
-    # "append": "0",
-    # "content": "1",
-    # "tagId": "",
-    # "posi": "",
-    # "picture": "",
-    # "groupId": "",
-    # "ua": "098%23E1hvI9vRvpWvUpCkvvvvvjiPRszhtjrWPszwtjthPmPWAjYRnLs9tjnCRFMOsjD8R86CvvyvmhO8gRvhuQRrvpvEvvp%2BmKPFCU%2B33QhvCvvhvvm5vpvhvvmv9FyCvvpvvvvvKphv8vvvvUrvpvvvvvmvn6Cvm8IvvUEpphvWh9vv9DCvpvA6vvmmByCv2VoEvpvVmvvC9cavuphvmvvv9b4o6anpmphvLv3jY9vjEixrQjZ7rj6OfaBlMEyfwydI1W2pjE1%2BVd0DyOvOSF6x6fmtSCy4PvAyqU5E%2BdvdhU0HsXZpejXW3E5xKfhT8Z4tIWeQRipCvpvVvvpvvhCv2QhvCvvvvvmrvpvEvv3qm3hBCRrj9phvHnQwx0TUzYswMErr7Y%2F%2FMCLwOHuCRphvCvvvvvv%3D",
-    # "needFold": "0",
-    # "_ksTS": "1571190862261_821",
-    # "callback": "jsonp822"
+    "currentPage": "1"
 }
 request_headers = {
     "Referer": "https://detail.tmall.com/item.htm?spm=a230r.1.14.1.28ff5197xnL9Q6&id=533732788971&cm_id=140105335569ed55e27b&abbucket=18",
@@ -37,7 +25,7 @@ request_headers = {
 }
 
 # 输出文档，文档名称 TM_productID.txt
-f = codecs.open('TM_%s.txt' % (query_args["itemId"]), 'w', encoding="utf-8")
+f = codecs.open('output/TM_%s.txt' % (query_args["itemId"]), 'w', encoding="utf-8")
 f.write("Product Page: %s" % origin_page)
 f.write("\n\n\n")
 

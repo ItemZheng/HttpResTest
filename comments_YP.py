@@ -24,7 +24,7 @@ request_headers = {
 }
 
 # 输出文档，文档名称 YX_itemID
-f = codecs.open('YP_%s.txt' % (request_body["gid"]), 'w', encoding="utf-8")
+f = codecs.open('output/YP_%s.txt' % (request_body["gid"]), 'w', encoding="utf-8")
 f.write("Product Page: %s" % origin_page)
 f.write("\n\n\n")
 
