@@ -6,7 +6,7 @@ import codecs
 from tqdm import *
 
 # 原网页
-origin_page = "http://you.163.com/item/detail?id=1497001&_stat_area=1&_stat_referer=search&_stat_query=%E6%99%BA%E8%83%BD%E9%A9%AC%E6%A1%B6%E7%9B%96&_stat_count=4&_stat_searchversion=76"
+origin_page = "http://you.163.com/item/detail?id=1497001&_stat_area=1&_stat_referer=search&_stat_query=%E6%99%BA%E8%83%BD%E9%A9%AC%E6%A1%B6%E7%9B%96&_stat_count=4&_stat_searchversion=0.8"
 
 # 请求参数
 ip = "http://you.163.com/xhr/comment/listByItemByTag.json"
@@ -40,7 +40,7 @@ f.write("\n\n\n")
 
 # 每次爬取20条，共10000 条
 comment_count = 0
-for page in tqdm(range(0, 1300)):
+for page in tqdm(range(0, 1340)):
     # 当前爬取第 page 页
     query_args["page"] = str(page + 1)
     query_args["__timestamp"] = str(long(time.time() * 100))
