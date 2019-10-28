@@ -76,6 +76,6 @@ for page in tqdm(range(0, 4300)):
                 f.write('\n')
 
     # 防止 ip 被封，睡眠一秒模拟用户点击
-    time.sleep(2)
+    time.sleep(3)
 
 f.write('\n\nTotal %s comments\n' % str(comment_count))
