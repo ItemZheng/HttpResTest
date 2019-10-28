@@ -6,14 +6,14 @@ import codecs
 from tqdm import *
 
 # 原网页
-origin_page = "https://www.xiaomiyoupin.com/detail?gid=106648"
+origin_page = "https://www.xiaomiyoupin.com/detail?gid=104245"
 
 # 请求参数
 ip = "https://www.xiaomiyoupin.com/api/comment/client/product/v1/content"
 request_body = {
     "pindex": 1,
     "psize": 10,
-    "gid": 106648,
+    "gid": 104245,
     "tag_name": u"全部",
     "tag_id": 0
 }
@@ -23,14 +23,14 @@ request_headers = {
     "Content-Type": "application/json"
 }
 
-# 输出文档，文档名称 YX_itemID
+# 输出文档，文档名称 YP_itemID
 f = codecs.open('output/YP_%s.txt' % (request_body["gid"]), 'w', encoding="utf-8")
 f.write("Product Page: %s" % origin_page)
 f.write("\n\n\n")
 
-# 每次爬取10条，共960 条
+# 每次爬取10条，共2630 条
 comment_count = 0
-for page in tqdm(range(0, 96)):
+for page in tqdm(range(0, 363)):
     # 当前爬取第 page 页
     request_body["pindex"] = page + 1
     json_info = json.dumps(request_body)

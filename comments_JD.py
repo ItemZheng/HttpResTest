@@ -6,13 +6,13 @@ import codecs
 from tqdm import *
 
 # 原网页
-origin_page = "https://item.jd.com/100005294816.html#comment"
+origin_page = "https://item.jd.com/3604840.html"
 
 # 请求参数
 ip = "https://sclub.jd.com/comment/productPageComments.action"
 query_args = {
-    "callback": "fetchJSON_comment98vv31",
-    "productId": "100005294816",
+    "callback": "fetchJSON_comment98vv2645",
+    "productId": "3604840",
     "score": "0",
     "sortType": "5",
     "page": "0",
@@ -22,7 +22,7 @@ query_args = {
     "fold": 0
 }
 request_headers = {
-    "Referer": "https://item.jd.com/100005294816.html",
+    "Referer": "https://item.jd.com/3604840.html",
     "Sec-Fetch-Mode": "no-cors",
     "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36"
 }
@@ -35,7 +35,7 @@ f.write("\n\n\n")
 # 每次爬取10条，共10000 条
 # 该商品只有1000条有效评论
 comment_count = 0
-for page in tqdm(range(0, 100)):
+for page in tqdm(range(0, 4300)):
     # 当前爬取第 page 页
     query_args["page"] = str(page)
 
@@ -55,7 +55,10 @@ for page in tqdm(range(0, 100)):
     data = json.loads(content)
 
     # 获取comments
-    comments = data["comments"]
+    try:
+        comments = data["comments"]
+    except:
+        break
     for i in range(len(comments)):  # 循环遍历所有comments
         comment = comments[i]  # 单条comment
         # f.write("### Comment %s ###\n" % (str(comment_count)))
@@ -73,6 +76,6 @@ for page in tqdm(range(0, 100)):
                 f.write('\n')
 
     # 防止 ip 被封，睡眠一秒模拟用户点击
-    time.sleep(1)
+    time.sleep(2)
 
 f.write('\n\nTotal %s comments\n' % str(comment_count))
